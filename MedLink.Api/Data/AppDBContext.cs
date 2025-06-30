@@ -1,9 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MedLink.Logic.Models;
+using MedLink.Logic.Model;
 
 namespace MedLink.Api.Data
 {
-    public class AppDBContext
+    public class AppDbContext : DbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options) { }
+        
+        public DbSet<Patient> Patients { get; set; }
     }
 }
