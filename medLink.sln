@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36221.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "medLinkDB", "medLinkDB\medLinkDB.sqlproj", "{33D22F92-6BA8-4CC7-9588-D5C62FFC0737}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "medLinkDB", "medLinkDB\MedLinkDB.sqlproj", "{33D22F92-6BA8-4CC7-9588-D5C62FFC0737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "medLinkMaui", "medLinkMaui\medLinkMaui.csproj", "{DCDF4E8D-C863-4845-B8E7-2841F114563C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLinkMaui", "medLinkMaui\MedLinkMaui.csproj", "{DCDF4E8D-C863-4845-B8E7-2841F114563C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLink.Logic", "MedLink.Logic\MedLink.Logic.csproj", "{F67F573D-7B5C-4E32-B460-F00082D9747B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedLink.Api", "MedLink.Api\MedLink.Api.csproj", "{F3EDB083-2F4E-4003-8133-5E2C36FBA2B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +27,14 @@ Global
 		{DCDF4E8D-C863-4845-B8E7-2841F114563C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCDF4E8D-C863-4845-B8E7-2841F114563C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCDF4E8D-C863-4845-B8E7-2841F114563C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F67F573D-7B5C-4E32-B460-F00082D9747B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F67F573D-7B5C-4E32-B460-F00082D9747B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F67F573D-7B5C-4E32-B460-F00082D9747B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F67F573D-7B5C-4E32-B460-F00082D9747B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3EDB083-2F4E-4003-8133-5E2C36FBA2B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EDB083-2F4E-4003-8133-5E2C36FBA2B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3EDB083-2F4E-4003-8133-5E2C36FBA2B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3EDB083-2F4E-4003-8133-5E2C36FBA2B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
