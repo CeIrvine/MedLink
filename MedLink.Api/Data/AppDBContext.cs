@@ -8,6 +8,6 @@ namespace MedLink.Api.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
         
-        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Patient> Patient { get; set; }
     }
 }

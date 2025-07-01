@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedLink.Logic.Model
+namespace MedLink.Logic.Models
 {
-    [Table("patient", Schema = "dbo")]
-    public class Patient
+    [Table("doctor", Schema = "dbo")]
+    public class Doctor
     {
         [Key]
-        [Column("patient_id")]
+        [Column("doc_id")]
         public int Id { get; set; }
 
         [Required]
@@ -26,14 +26,16 @@ namespace MedLink.Logic.Model
         public string LastName { get; set; }
 
         [Required]
+        [MaxLength(50)]
+        [Column("role")]
+        public string Role { get; set; }
+
+        [Required]
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
 
         [Required]
         [Column("last_modified")]
-        public DateTime LastModified {  get; set; }
-
-        [Column("note")]
-        public string patient_note { get; set; }
+        public DateTime LastModified { get; set; }
     }
 }
