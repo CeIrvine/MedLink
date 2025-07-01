@@ -39,7 +39,7 @@ namespace MedLink.Api.Controllers
             _context.Patient.Add(patient);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPatients), new { id = patient.patient_id }, patient);
+            return CreatedAtAction(nameof(GetPatients), new { id = patient.Id }, patient);
         }
     }
 }
