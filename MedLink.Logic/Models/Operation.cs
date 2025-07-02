@@ -21,7 +21,7 @@ namespace MedLink.Logic.Models
         [Required]
         [MaxLength(50)]
         [Column("operation_name")]
-        public string OperationName { get; set; }
+        public string Name { get; set; }
 
         [Column("doc_note")]
         public string DocNote { get; set; }

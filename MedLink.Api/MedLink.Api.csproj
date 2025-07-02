@@ -24,8 +24,4 @@
     <ProjectReference Include="..\MedLink.Logic\MedLink.Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Put\" />
-  </ItemGroup>
-
 </Project>

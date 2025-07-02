@@ -1,8 +1,7 @@
-﻿namespace MedLink.Api.DTOs.Get
+﻿namespace MedLink.Api.DTOs.Push
 {
-    public class GetVisitDTO
+    public class PushVisitDTO
     {
-        public int Id { get; set; }
         public int PatientId { get; set; }
         public int OperationId { get; set; }
         public int DocId { get; set; }
