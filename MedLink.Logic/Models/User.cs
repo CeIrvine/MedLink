@@ -30,6 +30,7 @@ namespace MedLink.Logic.Models
         public byte[] PasswordSalt { get; set; }
 
         [Required]
+        [MaxLength(20)]
         [Column("role")]
         public string Role { get; set; }
 

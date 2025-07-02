@@ -18,18 +18,22 @@ namespace MedLink.Logic.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(10)]
         [Column("patient_id")]
         public int PatientId { get; set; }
 
         [Required]
+        [MaxLength(10)]
         [Column("operation_id")]
         public int OperationId { get; set; }
 
         [Required]
+        [MaxLength(10)]
         [Column("doc_id")]
         public int DocId { get; set; }
 
         [Required]
+        [MaxLength(10)]
         [Column("illness_id")]
         public int IllnessId { get; set; }
 

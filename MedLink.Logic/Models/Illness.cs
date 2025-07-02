@@ -18,6 +18,7 @@ namespace MedLink.Logic.Models
 
         [Required]
         [Column("name")]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         [Required]

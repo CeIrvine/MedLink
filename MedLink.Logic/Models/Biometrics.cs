@@ -38,14 +38,21 @@ namespace MedLink.Logic.Models
         public DateTime LastModified { get; private set; }
 
         [Required]
+        [MaxLength(10)]
         [Column("weight")]
         public int Weight { get; set; }
 
         [Required]
+        [MaxLength(10)]
         [Column("height")]
         public int Height { get; set; }
 
+        [MaxLength(10)]
         [Column("blood_type")]
         public string BloodType { get; set; }
+
+        [MaxLength(10)]
+        [Column("gender")]
+        public string Gender { get; set; }
     }
 }

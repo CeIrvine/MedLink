@@ -27,10 +27,12 @@ namespace MedLink.Logic.Models
         public string DocNote { get; set; }
 
         [Required]
+        [MaxLength(10)]
         [Column("doc_id")]
         public int DocId { get; set; }
 
         [Required]
+        [MaxLength(10)]
         [Column("patient_id")]
         public int PatientId { get; set; }
 

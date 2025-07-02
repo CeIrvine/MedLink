@@ -18,9 +18,11 @@ namespace MedLink.Logic.Models
 
         [Required]
         [Column("patient_id")]
+        [MaxLength(10)]
         public int PatientId { get; set; }
 
         [Required]
+        [MaxLength(50)]
         [Column("insurance_num")]
         public string InsuranceNum { get; set; }
 

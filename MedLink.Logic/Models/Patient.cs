@@ -26,6 +26,7 @@ namespace MedLink.Logic.Models
         [Column("last_name")]
         public string LastName { get; set; }
 
+        [Required]
         [Column("date_of_birth")]
         public DateTime DOB { get; set; }
 
