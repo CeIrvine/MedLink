@@ -75,3 +75,13 @@ namespace MedLink.Api.Controllers
         }
     }
 }
+/*{ 
+"patientId": 1,
+  "fingerprint": "VGhpcyBpcyBhIHRlc3QgYnl0ZSBhcnJheQ==",
+  "faceId": "VGhpcyBpcyBhbm90aGVyIHRlc3Q=",
+  "weight": 70,
+  "height": 175,
+  "bloodType": "A+",
+  "gender": "Male"
+}*/
+
