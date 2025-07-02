@@ -26,7 +26,7 @@ namespace MedLink.Api.Controllers
         public async Task<ActionResult<IEnumerable<GetDoctorDto>>> GetDoctors()
         {
             var doctors = await _context.Doctors.ToListAsync();
-            return Ok(_mapper.Map<IEnumerable<GetPatientDto>>(doctors));
+            return Ok(_mapper.Map<IEnumerable<GetDoctorDto>>(doctors));
         }
 
         [HttpGet("{id}")]
@@ -36,7 +36,7 @@ namespace MedLink.Api.Controllers
             if (doctor is null)
                 return NotFound();
 
-            return Ok(_mapper.Map<GetPatientDto>(doctor));
+            return Ok(_mapper.Map<GetDoctorto>(doctor));
         }
 
         [HttpPost]

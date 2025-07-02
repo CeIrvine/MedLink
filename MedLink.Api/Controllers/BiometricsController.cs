@@ -26,27 +26,27 @@ namespace MedLink.Api.Controllers
         public async Task<ActionResult<IEnumerable<GetBiometricsDto>>> GetBiometrics()
         {
             var biometrics = await _context.Biometrics.ToListAsync();
-            return Ok(_mapper.Map<IEnumerable<GetPatientDto>>(biometrics));
+            return Ok(_mapper.Map<IEnumerable<GetBiometricsDto>>(biometrics));
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<GetPatientDto>>> GetBiometric(int id)
+        public async Task<ActionResult<IEnumerable<GetBiometricsDto>>> GetBiometric(int id)
         {
             var biometric = await _context.Biometrics.FindAsync(id);
             if (biometric is null)
                 return NotFound();
 
-            return Ok(_mapper.Map<GetPatientDto>(biometric));
+            return Ok(_mapper.Map<GetBiometricsDto>(biometric));
         }
 
         [HttpPost]
-        public async Task<ActionResult<GetPatientDto>> CreateBiometric(PostPatientDto dto)
+        public async Task<ActionResult<GetBiometricsDto>> CreateBiometric(PostBiometricsDto dto)
         {
             var biometric = _mapper.Map<Biometrics>(dto);
             _context.Biometrics.Add(biometric);
             await _context.SaveChangesAsync();
 
-            var biometricdto = _mapper.Map<GetPatientDto>(biometric);
+            var biometricdto = _mapper.Map<GetBiometricsDto>(biometric);
             return CreatedAtAction(nameof(GetBiometric), new { id = biometric.Id }, biometricdto);
         }
 

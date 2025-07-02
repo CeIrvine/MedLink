@@ -26,7 +26,7 @@ namespace MedLink.Api.Controllers
         public async Task<ActionResult<IEnumerable<GetVisitDto>>> GetVisit()
         {
             var visits = await _context.Visits.ToListAsync();
-            return Ok(_mapper.Map<IEnumerable<GetPatientDto>>(visits));
+            return Ok(_mapper.Map<IEnumerable<GetVisitDto>>(visits));
         }
 
         [HttpGet("{id}")]

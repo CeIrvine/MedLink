@@ -46,7 +46,7 @@ namespace MedLink.Api.Controllers
             _context.Illnesses.Add(illness);
             await _context.SaveChangesAsync();
 
-            var illnessDto = _mapper.Map<GetPatientDto>(illness);
+            var illnessDto = _mapper.Map<GetIllnessDto>(illness);
             return CreatedAtAction(nameof(GetIllness), new { id = illness.Id }, illnessDto);
         }
 
