@@ -36,5 +36,16 @@ namespace MedLink.Logic.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("last_modified")]
         public DateTime LastModified { get; private set; }
+
+        [Required]
+        [Column("weight")]
+        public int Weight { get; set; }
+
+        [Required]
+        [Column("height")]
+        public int Height { get; set; }
+
+        [Column("blood_type")]
+        public string BloodType { get; set; }
     }
 }

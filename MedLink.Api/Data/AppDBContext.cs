@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MedLink.Logic.Model;
+using MedLink.Logic.Models;
 
 namespace MedLink.Api.Data
 {

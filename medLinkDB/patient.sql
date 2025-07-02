@@ -5,5 +5,6 @@
 	[last_name] NVARCHAR(100) NOT NULL,
 	[created_at] DATETIME NOT NULL,
 	[last_modified] DATETIME NOT NULL, 
-    [patient_note] NVARCHAR(MAX) NULL
+    [patient_note] NVARCHAR(MAX) NULL, 
+    [date_of_birth] DATETIME NULL
 );

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedLink.Logic.Model
+namespace MedLink.Logic.Models
 {
     [Table("patient", Schema = "dbo")]
     public class Patient
@@ -26,6 +26,9 @@ namespace MedLink.Logic.Model
         [Column("last_name")]
         public string LastName { get; set; }
 
+        [Column("date_of_birth")]
+        public DateTime DOB { get; set; }
+
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]
@@ -37,6 +40,9 @@ namespace MedLink.Logic.Model
         public DateTime LastModified {  get; private set; }
 
         [Column("patient_note")]
-        public string patient_note { get; set; }
+        public string Note { get; set; }
+
+        [Column("medical_history")]
+        public string MedHistory { get; set; }
     }
 }

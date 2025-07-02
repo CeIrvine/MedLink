@@ -45,5 +45,8 @@ namespace MedLink.Logic.Models
 
         [Column("note")]
         public string Note { get; set; }
+
+        [Column("conclusion")]
+        public string Conclusion { get; set; }
     }
 }

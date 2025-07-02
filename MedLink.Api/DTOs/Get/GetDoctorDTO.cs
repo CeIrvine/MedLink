@@ -1,10 +1,10 @@
-﻿namespace MedLink.Api.DTOs
+﻿namespace MedLink.Api.DTOs.Get
 {
-    public class PatientDTO
+    public class GetDoctorDTO
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Note { get; set; }
+        public string role { get; set; }
     }
 }

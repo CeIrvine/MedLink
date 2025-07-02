@@ -1,43 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.EntityFrameworkCore;
+using MedLink.Api.Data;
+using MedLink.Logic.Models;
+using AutoMapper;
+using MedLink.Api.DTOs.Get;
 
 namespace MedLink.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class PatientController : ControllerBase
     {
-        // GET: api/<PatientController>
+        private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
+
+        public PatientController(AppDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<GetPatientDTO>>> GetPatients()
         {
-            return new string[] { "value1", "value2" };
+            var patients = await _context.Patient.ToListAsync();
+            return Ok(_mapper.Map<IEnumerable<GetPatientDTO>>(patients));
         }
 
-        // GET api/<PatientController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
-         {
-            return "value";
+        public async Task<ActionResult<IEnumerable<GetPatientDTO>>> GetPatients(int id)
+        {
+            var patient = await _context.Patient.FindAsync(id);
+            if (patient == null)
+                return NotFound();
+
+            return Ok(_mapper.Map<GetPatientDTO>(patient));
         }
 
-        // POST api/<PatientController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost] 
+        public async Task<ActionResult<GetPatientDTO>> CreatePatient(CreatePatientDTO patient)
         {
-        }
+            _context.Patient.Add(patient);
+            await _context.SaveChangesAsync();
 
-        // PUT api/<PatientController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<PatientController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return CreatedAtAction(nameof(GetPatients), new { id = patient.Id }, patient);
         }
     }
 }

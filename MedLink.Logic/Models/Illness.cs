@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MedLink.Logic.Models
 {
     [Table("illness", Schema = "dbo")]
-    public class illness
+    public class Illness
     {
         [Key]
         [Column("illness_id")]
