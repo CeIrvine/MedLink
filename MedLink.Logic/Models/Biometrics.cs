@@ -13,7 +13,8 @@ namespace MedLink.Logic.Models
     {
         [Key]
         [Column("biometrics_id")]
-        public int BiometricsId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int BiometricsId { get; private set; }
 
         [Required]
         [Column("patient_id")]
@@ -23,12 +24,17 @@ namespace MedLink.Logic.Models
         [Column("fingerprint_bio")]
         public byte Fingerprint { get; set; }
 
-        [Required]
-        [Column("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [Column("face_bio")]
+        public byte FaceId { get; set; }
 
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Column("created_at")]
+        public DateTime CreatedAt { get; private set; }
+
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("last_modified")]
-        public DateTime LastModified { get; set; }
+        public DateTime LastModified { get; private set; }
     }
 }

@@ -13,7 +13,8 @@ namespace MedLink.Logic.Model
     {
         [Key]
         [Column("patient_id")]
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; private set; }
 
         [Required]
         [MaxLength(50)]
@@ -26,14 +27,16 @@ namespace MedLink.Logic.Model
         public string LastName { get; set; }
 
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
 
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("last_modified")]
-        public DateTime LastModified {  get; set; }
+        public DateTime LastModified {  get; private set; }
 
-        [Column("note")]
+        [Column("patient_note")]
         public string patient_note { get; set; }
     }
 }

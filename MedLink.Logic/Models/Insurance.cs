@@ -13,6 +13,7 @@ namespace MedLink.Logic.Models
     {
         [Key]
         [Column("insurance_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InsuranceId { get; set; }
 
         [Required]
@@ -24,11 +25,13 @@ namespace MedLink.Logic.Models
         public string InsuranceNum { get; set; }
 
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
 
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("last_modified")]
-        public DateTime LastModified { get; set; }
+        public DateTime LastModified { get; private set; }
     }
 }

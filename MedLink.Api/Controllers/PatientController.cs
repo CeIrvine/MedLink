@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MedLink.Api.Data;
-using MedLink.Logic.Model;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MedLink.Api.Controllers
 {
@@ -9,37 +8,36 @@ namespace MedLink.Api.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-        private readonly AppDbContext _context;
-
-        public PatientController(AppDbContext context)
-        {
-            _context = context;
-        }
-
+        // GET: api/<PatientController>
         [HttpGet]
-        public async Task<IActionResult> GetPatients()
+        public IEnumerable<string> Get()
         {
-            var patients = await _context.Patient.ToListAsync();
-            return Ok(patients);
+            return new string[] { "value1", "value2" };
         }
 
+        // GET api/<PatientController>/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPatients(int id)
-        {
-            var patient = await _context.Patient.FindAsync(id);
-            if (patient == null)
-                return NotFound();
-
-            return Ok(patient);
+        public string Get(int id)
+         {
+            return "value";
         }
 
-        [HttpPost] 
-        public async Task<ActionResult<Patient>> PostPatient(Patient patient)
+        // POST api/<PatientController>
+        [HttpPost]
+        public void Post([FromBody] string value)
         {
-            _context.Patient.Add(patient);
-            await _context.SaveChangesAsync();
+        }
 
-            return CreatedAtAction(nameof(GetPatients), new { id = patient.Id }, patient);
+        // PUT api/<PatientController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE api/<PatientController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
         }
     }
 }
