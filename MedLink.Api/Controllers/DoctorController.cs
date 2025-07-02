@@ -36,7 +36,7 @@ namespace MedLink.Api.Controllers
             if (doctor is null)
                 return NotFound();
 
-            return Ok(_mapper.Map<GetDoctorto>(doctor));
+            return Ok(_mapper.Map<GetDoctorDto>(doctor));
         }
 
         [HttpPost]
