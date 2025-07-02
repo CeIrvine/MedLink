@@ -10,32 +10,32 @@ namespace MedLink.Api.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Biometrics, GetBiometricsDTO>();
-            CreateMap<Doctor, GetDoctorDTO>();
-            CreateMap<Illness, GetIllnessDTO>();
-            CreateMap<Insurance, GetInsuranceDTO>();
-            CreateMap<Operation, GetOperationDTO>();
-            CreateMap<Patient, GetPatientDTO>();
-            CreateMap<User, GetUserDTO>();
-            CreateMap<Visit, GetVisitDTO>();
+            CreateMap<Biometrics, GetBiometricsDto>();
+            CreateMap<Doctor, GetDoctorDto>();
+            CreateMap<Illness, GetIllnessDto>();
+            CreateMap<Insurance, GetInsuranceDto>();
+            CreateMap<Operation, GetOperationDto>();
+            CreateMap<Patient, GetPatientDto>();
+            CreateMap<User, GetUserDto>();
+            CreateMap<Visit, GetVisitDto>();
 
-            CreateMap<PostBiometricsDTO, Biometrics>();
-            CreateMap<PostDoctorDTO, Doctor>();
-            CreateMap<PostIllnessDTO, Illness>();
-            CreateMap<PostInsuranceDTO, Insurance>();
-            CreateMap<PostOperationDTO, Operation>();
-            CreateMap<PostPatientDTO, Patient>();
-            CreateMap<PostUserDTO, User>();
-            CreateMap<PostVisitDTO, Visit>();
+            CreateMap<PostBiometricsDto, Biometrics>();
+            CreateMap<PostDoctorDto, Doctor>();
+            CreateMap<PostIllnessDto, Illness>();
+            CreateMap<PostInsuranceDto, Insurance>();
+            CreateMap<PostOperationDto, Operation>();
+            CreateMap<PostPatientDto, Patient>();
+            CreateMap<PostUserDto, User>();
+            CreateMap<PostVisitDto, Visit>();
 
-            CreateMap<PushBiometricsDTO, Biometrics>();
-            CreateMap<PushDoctorDTO, Doctor>();
-            CreateMap<PushIllnessDTO, Illness>();
-            CreateMap<PushInsuranceDTO, Insurance>();
-            CreateMap<PushOperationDTO, Operation>();
-            CreateMap<PushPatientDTO, Patient>();
-            CreateMap<PushUserDTO, User>();
-            CreateMap<PushVisitDTO, Visit>();
+            CreateMap<PushBiometricsDto, Biometrics>();
+            CreateMap<PushDoctorDto, Doctor>();
+            CreateMap<PushIllnessDto, Illness>();
+            CreateMap<PushInsuranceDto, Insurance>();
+            CreateMap<PushOperationDto, Operation>();
+            CreateMap<PushPatientDto, Patient>();
+            CreateMap<PushUserDto, User>();
+            CreateMap<PushVisitDto, Visit>();
         }
     }
 }

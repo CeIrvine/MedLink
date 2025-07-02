@@ -8,7 +8,7 @@ namespace MedLink.Api.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
         
-        public DbSet<Biometrics> Biometricses { get; set; }
+        public DbSet<Biometrics> Biometrics { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Illness> Illnesses { get; set; }
         public DbSet<Insurance> Insurances { get; set; }

@@ -14,7 +14,7 @@ namespace MedLink.Logic.Models
         [Key]
         [Column("biometrics_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BiometricsId { get; private set; }
+        public int Id { get; private set; }
 
         [Required]
         [Column("patient_id")]
