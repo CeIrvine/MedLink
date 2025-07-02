@@ -1,6 +1,6 @@
 ﻿namespace MedLink.Api.DTOs.Post
 {
-    public class PostBiometricsDTO
+    public class PostBiometricsDto
     {
         public int Patient_Id { get; set; }
         public byte[] Fingerprint { get; set; }

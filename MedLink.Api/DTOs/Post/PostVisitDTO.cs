@@ -1,6 +1,6 @@
 ﻿namespace MedLink.Api.DTOs.Post
 {
-    public class PostVisitDTO
+    public class PostVisitDto
     {
         public int PatientId { get; set; }
         public int OperationId { get; set; }

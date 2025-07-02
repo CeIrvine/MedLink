@@ -1,6 +1,6 @@
 ﻿namespace MedLink.Api.DTOs.Push
 {
-    public class PushPatientDTO
+    public class PushPatientDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace MedLink.Api.DTOs.Get
 {
-    public class GetBiometricsDTO
+    public class GetBiometricsDto
     {
         public int Id { get; set; }
         public byte[] Fingerprint { get; set; }

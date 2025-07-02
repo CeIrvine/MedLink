@@ -4,6 +4,8 @@ using MedLink.Api.Data;
 using MedLink.Logic.Models;
 using AutoMapper;
 using MedLink.Api.DTOs.Get;
+using MedLink.Api.DTOs.Post;
+using MedLink.Api.DTOs.Push;
 
 namespace MedLink.Api.Controllers
 {
@@ -21,29 +23,55 @@ namespace MedLink.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GetPatientDTO>>> GetPatients()
+        public async Task<ActionResult<IEnumerable<GetPatientDto>>> GetPatients()
         {
-            var patients = await _context.Patient.ToListAsync();
-            return Ok(_mapper.Map<IEnumerable<GetPatientDTO>>(patients));
+            var patients = await _context.Patients.ToListAsync();
+            return Ok(_mapper.Map<IEnumerable<GetPatientDto>>(patients));
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<GetPatientDTO>>> GetPatients(int id)
+        public async Task<ActionResult<IEnumerable<GetPatientDto>>> GetPatient(int id)
         {
-            var patient = await _context.Patient.FindAsync(id);
-            if (patient == null)
+            var patient = await _context.Patients.FindAsync(id);
+            if (patient is null)
                 return NotFound();
 
-            return Ok(_mapper.Map<GetPatientDTO>(patient));
+            return Ok(_mapper.Map<GetPatientDto>(patient));
         }
 
         [HttpPost] 
-        public async Task<ActionResult<GetPatientDTO>> CreatePatient(CreatePatientDTO patient)
+        public async Task<ActionResult<GetPatientDto>> CreatePatient(PostPatientDto dto)
         {
-            _context.Patient.Add(patient);
+            var patient = _mapper.Map<Patient>(dto);
+            _context.Patients.Add(patient);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPatients), new { id = patient.Id }, patient);
+            var patientDto = _mapper.Map<GetPatientDto>(patient);
+            return CreatedAtAction(nameof(GetPatient), new { id = patient.Id }, patientDto);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdatePatient(int id, PushPatientDto dto)
+        {
+            var patient = await _context.Patients.FindAsync(id);
+            if (patient is null)
+                return NotFound();
+
+            _mapper.Map(dto, patient);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePatient(int id)
+        {
+            var patient = await _context.Patients.FindAsync(id);
+            if (patient is null)
+                return NotFound();
+
+            _context.Patients.Remove(patient);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }
