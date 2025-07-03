@@ -11,47 +11,51 @@ namespace MedLink.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BiometricsController : ControllerBase
+    public class BiometricController : ControllerBase
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public BiometricsController(AppDbContext context, IMapper mapper)
+        public BiometricController(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GetBiometricsDto>>> GetBiometrics()
+        public async Task<ActionResult<IEnumerable<GetBiometricDto>>> GetBiometrics()
         {
             var biometrics = await _context.Biometrics.ToListAsync();
-            return Ok(_mapper.Map<IEnumerable<GetBiometricsDto>>(biometrics));
+            return Ok(_mapper.Map<IEnumerable<GetBiometricDto>>(biometrics));
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<GetBiometricsDto>>> GetBiometric(int id)
+        public async Task<ActionResult<IEnumerable<GetBiometricDto>>> GetBiometric(int id)
         {
             var biometric = await _context.Biometrics.FindAsync(id);
             if (biometric is null)
                 return NotFound();
 
-            return Ok(_mapper.Map<GetBiometricsDto>(biometric));
+            return Ok(_mapper.Map<GetBiometricDto>(biometric));
         }
 
         [HttpPost]
-        public async Task<ActionResult<GetBiometricsDto>> CreateBiometric(PostBiometricsDto dto)
+        public async Task<ActionResult<GetBiometricDto>> CreateBiometric(PostBiometricDto dto)
         {
-            var biometric = _mapper.Map<Biometrics>(dto);
+            var patient = await _context.Patients.FindAsync(dto.PatientId);
+            if (patient is null)
+                return NotFound($"Patient with ID {dto.PatientId} not found.");
+
+            var biometric = _mapper.Map<Biometric>(dto);
             _context.Biometrics.Add(biometric);
             await _context.SaveChangesAsync();
 
-            var biometricdto = _mapper.Map<GetBiometricsDto>(biometric);
-            return CreatedAtAction(nameof(GetBiometric), new { id = biometric.Id }, biometricdto);
+            var biometricDto = _mapper.Map<GetBiometricDto>(biometric);
+            return CreatedAtAction(nameof(GetBiometric), new { id = biometric.Id }, biometricDto);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateBiometric(int id, PushBiometricsDto dto)
+        public async Task<ActionResult> UpdateBiometric(int id, PushBiometricDto dto)
         {
             var biometric = await _context.Biometrics.FindAsync(id);
             if (biometric is null)

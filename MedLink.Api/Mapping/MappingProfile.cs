@@ -10,7 +10,7 @@ namespace MedLink.Api.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Biometrics, GetBiometricsDto>();
+            CreateMap<Biometric, GetBiometricDto>();
             CreateMap<Doctor, GetDoctorDto>();
             CreateMap<Illness, GetIllnessDto>();
             CreateMap<Insurance, GetInsuranceDto>();
@@ -19,7 +19,7 @@ namespace MedLink.Api.Mapping
             CreateMap<User, GetUserDto>();
             CreateMap<Visit, GetVisitDto>();
 
-            CreateMap<PostBiometricsDto, Biometrics>();
+            CreateMap<PostBiometricDto, Biometric>();
             CreateMap<PostDoctorDto, Doctor>();
             CreateMap<PostIllnessDto, Illness>();
             CreateMap<PostInsuranceDto, Insurance>();
@@ -28,7 +28,7 @@ namespace MedLink.Api.Mapping
             CreateMap<PostUserDto, User>();
             CreateMap<PostVisitDto, Visit>();
 
-            CreateMap<PushBiometricsDto, Biometrics>();
+            CreateMap<PushBiometricDto, Biometric>();
             CreateMap<PushDoctorDto, Doctor>();
             CreateMap<PushIllnessDto, Illness>();
             CreateMap<PushInsuranceDto, Insurance>();

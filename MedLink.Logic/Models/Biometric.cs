@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedLink.Logic.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace MedLink.Logic.Models
 {
     [Table("biometrics", Schema = "dbo")]
-    public class Biometrics
+    public class Biometric : ITrackable
     {
         [Key]
         [Column("biometrics_id")]
@@ -22,21 +23,11 @@ namespace MedLink.Logic.Models
 
         [Required]
         [Column("fingerprint_bio")]
-        public byte Fingerprint { get; set; }
+        public byte[] Fingerprint { get; set; }
 
         [Column("face_bio")]
-        public byte FaceId { get; set; }
-
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Column("created_at")]
-        public DateTime CreatedAt { get; private set; }
-
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Column("last_modified")]
-        public DateTime LastModified { get; private set; }
-
+        public byte[] FaceId { get; set; }
+        
         [Required]
         [MaxLength(10)]
         [Column("weight")]
@@ -54,5 +45,13 @@ namespace MedLink.Logic.Models
         [MaxLength(10)]
         [Column("gender")]
         public string Gender { get; set; }
+
+        [Required]
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [Required]
+        [Column("last_modified")]
+        public DateTime LastModified { get; set; }
     }
 }

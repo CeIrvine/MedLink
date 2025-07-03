@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedLink.Logic.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace MedLink.Logic.Models
 {
     [Table("doctor", Schema = "dbo")]
-    public class Doctor
+    public class Doctor : ITrackable
     {
         [Key]
         [Column("doc_id")]
@@ -32,13 +33,11 @@ namespace MedLink.Logic.Models
         public string Role { get; set; }
 
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; set; }
 
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("last_modified")]
-        public DateTime LastModified { get; private set; }
+        public DateTime LastModified { get; set; }
     }
 }

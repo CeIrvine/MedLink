@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedLink.Logic.Interfaces;
 
 
 namespace MedLink.Logic.Models
 {
     [Table("operation", Schema = "dbo")]
-    public class Operation
+    public class Operation : ITrackable
     {
         [Key]
         [Column("operation_id")]
@@ -37,13 +38,11 @@ namespace MedLink.Logic.Models
         public int PatientId { get; set; }
 
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("created_at")]
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; set; }
 
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column("last_modified")]
-        public DateTime LastModified { get; private set; }
+        public DateTime LastModified { get; set; }
     }
 }
