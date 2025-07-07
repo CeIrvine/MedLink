@@ -55,7 +55,7 @@ namespace MedLink.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateBiometric(int id, PushBiometricDto dto)
+        public async Task<ActionResult> UpdateBiometric(int id, PutBiometricDto dto)
         {
             var biometric = await _context.Biometrics.FindAsync(id);
             if (biometric is null)

@@ -44,5 +44,12 @@ namespace MedLink.Logic.Models
 
         [Column("medical_history")]
         public string MedHistory { get; set; }
+
+        [Required]
+        [Column("phone")]
+        public int Phone { get; set; }
+
+        [Column("email")]
+        public string Email { get; set; }
     }
 }

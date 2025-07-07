@@ -1,6 +1,6 @@
 ﻿namespace MedLink.Api.DTOs.Push
 {
-    public class PushBiometricDto
+    public class PutBiometricDto
     {
         public byte[] Fingerprint { get; set; }
         public byte[] FaceId { get; set; }

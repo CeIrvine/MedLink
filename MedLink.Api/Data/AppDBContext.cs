@@ -17,6 +17,7 @@ namespace MedLink.Api.Data
         public DbSet<Patient> Patients { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Visit> Visits { get; set; }
+        public DbSet<Surgery> Surgerys { get; set; }
 
         public override int SaveChanges()
         {

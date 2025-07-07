@@ -51,7 +51,7 @@ namespace MedLink.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateDoctor(int id, PushDoctorDto dto)
+        public async Task<ActionResult> UpdateDoctor(int id, PutDoctorDto dto)
         {
             var doctor = await _context.Doctors.FindAsync(id);
             if (doctor is null)

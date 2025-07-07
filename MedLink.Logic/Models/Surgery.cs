@@ -9,28 +9,28 @@ using System.Threading.Tasks;
 
 namespace MedLink.Logic.Models
 {
-    [Table("doctor", Schema = "dbo")]
-    public class Doctor : ITrackable
+    [Table("surgery", Schema = "dbo")]
+    public class Surgery : ITrackable
     {
         [Key]
-        [Column("doc_id")]
+        [Column("surgery_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
         [Required]
-        [MaxLength(50)]
-        [Column("first_name")]
-        public string FirstName { get; set; }
+        [Column("operation_id")]
+        public int OperationId { get; set; }
+
+        [Column("doc_note")]
+        public string Note { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        [Column("last_name")]
-        public string LastName { get; set; }
+        [Column("patient_id")]
+        public int PatientId { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        [Column("role")]
-        public string Role { get; set; }
+        [Column("doc_id")]
+        public int DocId { get; set; }
 
         [Required]
         [Column("created_at")]
@@ -39,13 +39,5 @@ namespace MedLink.Logic.Models
         [Required]
         [Column("last_modified")]
         public DateTime LastModified { get; set; }
-
-        [Required]
-        [Column("phone")]
-        public int Phone { get; set; }
-
-        [Column("email")]
-        [MaxLength(30)]
-        public string Email { get; set; }   
     }
 }

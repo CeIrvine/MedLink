@@ -18,6 +18,7 @@ namespace MedLink.Api.Mapping
             CreateMap<Patient, GetPatientDto>();
             CreateMap<User, GetUserDto>();
             CreateMap<Visit, GetVisitDto>();
+            CreateMap<Surgery, GetSurgeryDto>();
 
             CreateMap<PostBiometricDto, Biometric>();
             CreateMap<PostDoctorDto, Doctor>();
@@ -27,15 +28,17 @@ namespace MedLink.Api.Mapping
             CreateMap<PostPatientDto, Patient>();
             CreateMap<PostUserDto, User>();
             CreateMap<PostVisitDto, Visit>();
+            CreateMap<PostSurgeryDto, Surgery>();
 
-            CreateMap<PushBiometricDto, Biometric>();
-            CreateMap<PushDoctorDto, Doctor>();
-            CreateMap<PushIllnessDto, Illness>();
-            CreateMap<PushInsuranceDto, Insurance>();
-            CreateMap<PushOperationDto, Operation>();
-            CreateMap<PushPatientDto, Patient>();
-            CreateMap<PushUserDto, User>();
-            CreateMap<PushVisitDto, Visit>();
+            CreateMap<PutBiometricDto, Biometric>();
+            CreateMap<PutDoctorDto, Doctor>();
+            CreateMap<PutIllnessDto, Illness>();
+            CreateMap<PutInsuranceDto, Insurance>();
+            CreateMap<PutOperationDto, Operation>();
+            CreateMap<PutPatientDto, Patient>();
+            CreateMap<PutUserDto, User>();
+            CreateMap<PutVisitDto, Visit>();
+            CreateMap<PutSurgeryDto, Surgery>();
         }
     }
 }
