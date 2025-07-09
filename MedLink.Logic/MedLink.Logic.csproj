@@ -7,10 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UOW\**" />
+    <Compile Remove="ViewModel\**" />
+    <EmbeddedResource Remove="UOW\**" />
+    <EmbeddedResource Remove="ViewModel\**" />
+    <None Remove="UOW\**" />
+    <None Remove="ViewModel\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="LogicInterfaces\" />
-    <Folder Include="UOW\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
