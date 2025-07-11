@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Http;
-using MedLink.Logic.Services;
 using medLinkMaui.ViewModel;
+using MedLink.Logic.Services;
 
 namespace medLinkMaui
 {

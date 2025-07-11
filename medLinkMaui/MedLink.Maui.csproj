@@ -83,8 +83,4 @@
 	  <ProjectReference Include="..\MedLink.Logic\MedLink.Logic.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\MedLink.Logic\MedLink.Logic.csproj" />
-	</ItemGroup>
-
 </Project>
