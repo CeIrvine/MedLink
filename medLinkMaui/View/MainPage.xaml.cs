@@ -1,10 +1,13 @@
-﻿namespace medLinkMaui
+﻿using medLinkMaui.ViewModel;
+
+namespace medLinkMaui
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(PatientViewModel viewModel)
         {
             InitializeComponent();
+            BindingContext = viewModel;
         }       
     }
 }

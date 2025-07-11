@@ -76,13 +76,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModel\" />
 	  <Folder Include="Resources\Images\" />
-	  <Folder Include="View\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\MedLink.Logic\MedLink.Logic.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

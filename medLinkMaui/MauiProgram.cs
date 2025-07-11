@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Http;
 using MedLink.Logic.Services;
+using medLinkMaui.ViewModel;
 
 namespace medLinkMaui
 {
@@ -17,6 +18,7 @@ namespace medLinkMaui
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            // services
             builder.Services.AddSingleton<BiometricsService>();
             builder.Services.AddSingleton<DoctorsService>();
             builder.Services.AddSingleton<IllnessesService>();
@@ -26,6 +28,12 @@ namespace medLinkMaui
             builder.Services.AddSingleton<SurgeriesService>();
             builder.Services.AddSingleton<UsersService>();
             builder.Services.AddSingleton<VisitsService>();
+
+            // view models
+            builder.Services.AddSingleton<PatientViewModel>();
+
+            // pages/views
+            builder.Services.AddSingleton<MainPage>();
 #if DEBUG
             builder.Logging.AddDebug();
             builder.Services.AddHttpClient("MedLinkApi", client =>
