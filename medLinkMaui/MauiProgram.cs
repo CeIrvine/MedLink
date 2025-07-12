@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Http;
+﻿using MedLink.Logic.Services;
 using medLinkMaui.ViewModel;
-using MedLink.Logic.Services;
+using Microsoft.Extensions.Http;
+using Microsoft.Extensions.Logging;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace medLinkMaui
 {
@@ -34,14 +36,19 @@ namespace medLinkMaui
 
             // pages/views
             builder.Services.AddSingleton<MainPage>();
+
+            
 #if DEBUG
             builder.Logging.AddDebug();
-            builder.Services.AddHttpClient("MedLinkApi", client =>
+            // HTTP Client
+            builder.Services.AddSingleton(new HttpClient(new HttpClientHandler
             {
-                client.BaseAddress = new Uri("http://localhost:5260/api/");
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+            })
+            {
+                BaseAddress = new Uri("https://10.0.2.2:7000/api/")
             });
 #endif
-
             return builder.Build();
         }
     }

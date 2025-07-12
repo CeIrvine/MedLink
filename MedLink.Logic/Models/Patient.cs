@@ -47,7 +47,7 @@ namespace MedLink.Logic.Models
 
         [Required]
         [Column("phone")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Column("email")]
         public string Email { get; set; }

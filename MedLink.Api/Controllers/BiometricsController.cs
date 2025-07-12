@@ -11,12 +11,12 @@ namespace MedLink.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BiometricController : ControllerBase
+    public class BiometricsController : ControllerBase
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public BiometricController(AppDbContext context, IMapper mapper)
+        public BiometricsController(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

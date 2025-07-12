@@ -42,7 +42,7 @@ namespace MedLink.Logic.Models
 
         [Required]
         [Column("phone")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Column("email")]
         [MaxLength(30)]

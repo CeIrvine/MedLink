@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MedLink.Logic.Services
 {
     public class BaseService<T>
     {
-        private readonly HttpClient _httpClient;
+        protected readonly HttpClient _httpClient;
         private readonly string _endpoint;
+        private static readonly JsonSerializerOptions _jsonOptions = new ()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        };
 
         public BaseService(HttpClient httpClient, string endpoint)
         {
@@ -22,8 +28,7 @@ namespace MedLink.Logic.Services
             var response = await _httpClient.GetAsync(_endpoint);
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                return System.Text.Json.JsonSerializer.Deserialize<List<T>>(json);
+                return await response.Content.ReadFromJsonAsync<List<T>>(_jsonOptions);
             }
             return new List<T>();
         }
@@ -33,8 +38,7 @@ namespace MedLink.Logic.Services
             var response = await _httpClient.GetAsync($"{_endpoint}/{id}");
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                return System.Text.Json.JsonSerializer.Deserialize<T>(json);
+                return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
             }
             return default;
         }

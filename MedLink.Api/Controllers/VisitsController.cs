@@ -11,12 +11,12 @@ namespace MedLink.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VisitController : ControllerBase
+    public class VisitsController : ControllerBase
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public VisitController(AppDbContext context, IMapper mapper)
+        public VisitsController(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
