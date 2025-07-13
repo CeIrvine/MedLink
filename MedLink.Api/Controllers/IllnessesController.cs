@@ -6,72 +6,16 @@ using AutoMapper;
 using MedLink.Api.DTOs.Get;
 using MedLink.Api.DTOs.Post;
 using MedLink.Api.DTOs.Push;
+using MedLink.Api.Controller;
 
 namespace MedLink.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class IllnessesController : ControllerBase
+    public class IllnessesController 
+        : BaseApiController<Illness, GetIllnessDto, PostIllnessDto, PutIllnessDto>
     {
-        private readonly AppDbContext _context;
-        private readonly IMapper _mapper;
-
-        public IllnessesController(AppDbContext context, IMapper mapper)
+        public IllnessesController(AppDbContext context, IMapper mapper) 
+            : base(context, mapper)
         {
-            _context = context;
-            _mapper = mapper;
         }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<GetIllnessDto>>> GetIllnesses()
-        {
-            var illnesses = await _context.Illnesses.ToListAsync();
-            return Ok(_mapper.Map<IEnumerable<GetIllnessDto>>(illnesses));
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<GetIllnessDto>>> GetIllness(int id)
-        {
-            var illness = await _context.Illnesses.FindAsync(id);
-            if (illness is null)
-                return NotFound();
-
-            return Ok(_mapper.Map<GetIllnessDto>(illness));
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<GetIllnessDto>> CreateIllness(PostIllnessDto dto)
-        {
-            var illness = _mapper.Map<Illness>(dto);
-            _context.Illnesses.Add(illness);
-            await _context.SaveChangesAsync();
-
-            var illnessDto = _mapper.Map<GetIllnessDto>(illness);
-            return CreatedAtAction(nameof(GetIllness), new { id = illness.Id }, illnessDto);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateIllness (int id, PutIllnessDto dto)
-        {
-            var illness = await _context.Illnesses.FindAsync(id);
-            if (illness is null)
-                return NotFound();
-
-            _mapper.Map(dto, illness);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteIllness(int id)
-        {
-            var illness = await _context.Illnesses.FindAsync(id);
-            if (illness is null)
-                return NotFound();
-
-            _context.Illnesses.Remove(illness);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-    }
+    }            
 }
