@@ -84,4 +84,22 @@
 	  <ProjectReference Include="..\MedLink.Logic\MedLink.Logic.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="View\DataManagementPage.xaml.cs">
+	    <DependentUpon>DataManagementPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\CreatePatientPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\DataManagementPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\DownloadedPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

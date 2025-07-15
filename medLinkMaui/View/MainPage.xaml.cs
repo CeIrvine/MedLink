@@ -1,6 +1,6 @@
 ﻿using medLinkMaui.ViewModel;
 
-namespace medLinkMaui
+namespace medLinkMaui.View
 {
     public partial class MainPage : ContentPage
     {
@@ -17,6 +17,16 @@ namespace medLinkMaui
             base.OnAppearing();
             if (ViewModel != null)
                 await ViewModel.GetPatientsCommand.ExecuteAsync(null);
+        }
+
+        private void OnSearchToggleClicked(object sender, EventArgs e)
+        {
+            PatientSearchBar.IsVisible = !PatientSearchBar.IsVisible;
+        }
+
+        private void OnSearchPressed(object sender, EventArgs e)
+        {
+/*            ViewModel?.SearchPatientsCommand.Execute(PatientSearchBar.Text);*/        
         }
     }
 }

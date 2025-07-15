@@ -42,4 +42,12 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <Color x:Key="MedLinkPrimaryBackground">#ADD8E6</Color>
+    <Color x:Key="MedLinkPrimaryText">#465B6C</Color>
+    <Color x:Key="MedLinkAccentBlue">#6A8BA0</Color>
+    <Color x:Key="MedLinkLightGray">#F0F4F8</Color>
+    <Color x:Key="MedLinkDarkGray">#2D3E4F</Color>
+    <Color x:Key="MedLinkSuccessGreen">#7CC47E</Color>
+    <Color x:Key="MedLinkErrorRed">#D98A8A</Color>
 </ResourceDictionary>

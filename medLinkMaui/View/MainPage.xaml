@@ -5,36 +5,51 @@
              xmlns:viewmodel="clr-namespace:medLinkMaui.ViewModel"
              x:DataType="viewmodel:PatientViewModel"
              Title="{Binding Title}"
-             x:Class="medLinkMaui.MainPage">
+             x:Class="medLinkMaui.View.MainPage">
 
-    <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text=""
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="OnSearchToggleClicked"/>
+    </ContentPage.ToolbarItems>
 
-        <CollectionView Grid.ColumnSpan="2"
-                            ItemsSource="{Binding Patients}"
-                            SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Patient">
-                    <Grid Padding="10">
-                        <Frame HeightRequest="125">
-                            <Label Text="{Binding FirstName}"/>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <VerticalStackLayout>
+        <SearchBar x:Name="PatientSearchBar"
+                   Placeholder="Search patients"
+                   IsVisible="True"
+                   SearchButtonPressed="OnSearchPressed"
+                   Margin="10,0"/>
+    
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto">
 
-        <Button Text="Get Patients"
-                Command="{Binding GetPatientsCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                Grid.Row="1"
-                Margin="8"/>
+            <CollectionView Grid.ColumnSpan="2"
+                                ItemsSource="{Binding Patients}"
+                                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Patient">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="125">
+                                <Label Text="{Binding FirstName}"/>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-        <ActivityIndicator IsVisible="{Binding Isbusy}"
-                           IsRunning="{Binding Isbusy}"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           Grid.RowSpan="2"
-                           Grid.ColumnSpan="2"/>
-    </Grid>
+            <Button Text="Get Patients"
+                    Command="{Binding GetPatientsCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Grid.Row="1"
+                    Margin="8"/>
+
+            <ActivityIndicator IsVisible="{Binding Isbusy}"
+                               IsRunning="{Binding Isbusy}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Grid.RowSpan="2"
+                               Grid.ColumnSpan="2"/>
+        </Grid>
+    </VerticalStackLayout>
 </ContentPage>  
 

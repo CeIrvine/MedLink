@@ -1,5 +1,6 @@
 ﻿using MedLink.Logic.Services;
 using medLinkMaui.ViewModel;
+using medLinkMaui.View;
 using Microsoft.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using System.Net.Security;
@@ -36,8 +37,10 @@ namespace medLinkMaui
 
             // pages/views
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<CreatePatientPage>();
+            builder.Services.AddSingleton<DownloadedPage>();
+            builder.Services.AddSingleton<DataManagementPage>();
 
-            
 #if DEBUG
             builder.Logging.AddDebug();
             // HTTP Client
