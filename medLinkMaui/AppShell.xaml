@@ -5,7 +5,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:medLinkMaui.View"
     Shell.FlyoutBehavior="Flyout">
-   
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,Auto"
+              VerticalOptions="Center">
+            <Label Text=""/>
+            <Image Source="improved_medlink_logo.png"
+                   HeightRequest="110"
+                   Grid.Column="2"
+                   VerticalOptions="Fill"
+                   HorizontalOptions="End"/>
+        </Grid>
+    </Shell.TitleView>
     <FlyoutItem Title="Home" Icon="house_solid.png">
         <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
     </FlyoutItem>
