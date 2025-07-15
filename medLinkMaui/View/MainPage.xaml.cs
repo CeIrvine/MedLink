@@ -1,4 +1,5 @@
 ﻿using medLinkMaui.ViewModel;
+using System.Threading.Tasks;
 
 namespace medLinkMaui.View
 {
@@ -6,12 +7,14 @@ namespace medLinkMaui.View
     {
         private PatientViewModel ViewModel => BindingContext as PatientViewModel;
 
+        double _lastScrollY = 0;
+
         public MainPage(PatientViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;
-        }     
-        
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -19,14 +22,61 @@ namespace medLinkMaui.View
                 await ViewModel.GetPatientsCommand.ExecuteAsync(null);
         }
 
-        private void OnSearchToggleClicked(object sender, EventArgs e)
+        private void OnCollectionViewScrolled(object sender, ItemsViewScrolledEventArgs e)
         {
-            PatientSearchBar.IsVisible = !PatientSearchBar.IsVisible;
+            double currentY = e.VerticalOffset;
+
+            if (currentY > _lastScrollY + 5)
+            {
+                HideSearchBar();
+            }
+            else if (currentY < _lastScrollY - 5)
+            {
+                ShowSearchBar();
+            }
+
+            _lastScrollY = currentY;
         }
 
-        private void OnSearchPressed(object sender, EventArgs e)
+        private async void HideSearchBar()
         {
-/*            ViewModel?.SearchPatientsCommand.Execute(PatientSearchBar.Text);*/        
+            if (PatientSearchBar.TranslationY == 0)
+            {
+                await PatientSearchBar.TranslateTo(0, -60, 200, Easing.CubicIn);
+                await PatientSearchBar.FadeTo(0, 150, Easing.CubicIn);
+            }
+        }
+
+        private async void ShowSearchBar()
+        {
+            if (PatientSearchBar.TranslationY < 0)
+            {
+                await PatientSearchBar.FadeTo(1, 150, Easing.CubicOut);
+                await PatientSearchBar.TranslateTo(0, 0, 200, Easing.CubicOut);
+            }
+        }
+
+        private async void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var keyword = e.NewTextValue?.ToLower() ?? "";
+
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                if (BindingContext is PatientViewModel vm)
+                {
+                    PatientCollectionView.ItemsSource = vm.Patients;
+                }
+            }
+            else
+            {
+                if (BindingContext is PatientViewModel vm)
+                {
+                    var filteredPatients = await Task.Run(() =>
+                        vm.Patients.Where(p => p.FirstName.ToLower().Contains(keyword)).ToList());
+
+                    PatientCollectionView.ItemsSource = filteredPatients;
+                }
+            }
         }
     }
 }

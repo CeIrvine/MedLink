@@ -7,49 +7,55 @@
              Title="{Binding Title}"
              x:Class="medLinkMaui.View.MainPage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text=""
-                     Order="Primary"
-                     Priority="0"
-                     Clicked="OnSearchToggleClicked"/>
-    </ContentPage.ToolbarItems>
-
-    <VerticalStackLayout>
+    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,*,Auto">
         <SearchBar x:Name="PatientSearchBar"
-                   Placeholder="Search patients"
-                   IsVisible="True"
-                   SearchButtonPressed="OnSearchPressed"
-                   Margin="10,0"/>
-    
-        <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto">
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Placeholder="Search Patients"
+                   TextChanged="OnSearchTextChanged"
+                   Margin="10"
+                   HeightRequest="50"
+                   VerticalOptions="Start"
+                   TranslationY="0"
+                   Opacity="1"/>
 
-            <CollectionView Grid.ColumnSpan="2"
-                                ItemsSource="{Binding Patients}"
-                                SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Patient">
-                        <Grid Padding="10">
-                            <Frame HeightRequest="125">
-                                <Label Text="{Binding FirstName}"/>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <CollectionView x:Name="PatientCollectionView"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Patients}"
+                        Scrolled="OnCollectionViewScrolled">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Patient">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125">
+                            <Label Text="{Binding FirstName}"/>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-            <Button Text="Get Patients"
-                    Command="{Binding GetPatientsCommand}"
-                    IsEnabled="{Binding IsNotBusy}"
-                    Grid.Row="1"
-                    Margin="8"/>
+        <Button Text="Search By Fingerprint"
+                Command="{Binding SearchByFingerprintCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="2"
+                Grid.Column="0"
+                HeightRequest="10"
+                Margin="8"/>
 
-            <ActivityIndicator IsVisible="{Binding Isbusy}"
-                               IsRunning="{Binding Isbusy}"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                               Grid.RowSpan="2"
-                               Grid.ColumnSpan="2"/>
-        </Grid>
-    </VerticalStackLayout>
+        <Button Text="Search By FaceId"
+                Command="{Binding SearchByFaceIdCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="8"/>
+
+        <ActivityIndicator IsVisible="{Binding Isbusy}"
+                           IsRunning="{Binding Isbusy}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2"/>
+    </Grid>
 </ContentPage>  
 
