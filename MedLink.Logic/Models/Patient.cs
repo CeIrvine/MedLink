@@ -15,7 +15,7 @@ namespace MedLink.Logic.Models
         [Key]
         [Column("patient_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]

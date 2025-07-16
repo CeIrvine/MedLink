@@ -59,29 +59,12 @@ namespace medLinkMaui.View
                 await PatientSearchBar.FadeTo(1, 150, Easing.CubicOut);
                 await PatientSearchBar.TranslateTo(0, 0, 200, Easing.CubicOut);
             }
-        }
+        }        
 
-        private async void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+        private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
         {
-            var keyword = e.NewTextValue?.ToLower() ?? "";
-
-            if (string.IsNullOrWhiteSpace(keyword))
-            {
-                if (BindingContext is PatientViewModel vm)
-                {
-                    PatientCollectionView.ItemsSource = vm.Patients;
-                }
-            }
-            else
-            {
-                if (BindingContext is PatientViewModel vm)
-                {
-                    var filteredPatients = await Task.Run(() =>
-                        vm.Patients.Where(p => p.FirstName.ToLower().Contains(keyword)).ToList());
-
-                    PatientCollectionView.ItemsSource = filteredPatients;
-                }
-            }
+            if (ViewModel != null)
+                ViewModel.SearchKeyword = e.NewTextValue;
         }
     }
 }
