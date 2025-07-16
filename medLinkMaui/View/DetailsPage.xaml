@@ -3,10 +3,83 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="medLinkMaui.View.DetailsPage"
              Title="">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding Patient.FirstName}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,*"
+              RowSpacing="10">
+            <BoxView
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                BackgroundColor="White"/>
+
+            <Border StrokeShape="RoundRectangle 80"
+                    Stroke="LightGrey"
+                    StrokeThickness="1"
+                    HeightRequest="172"
+                    WidthRequest="172"
+                    Margin="0,25,0,0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                <Image Aspect="AspectFill"
+                       HeightRequest="170"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Source="empty_profile.png"
+                       WidthRequest="170"/>
+            </Border>
+
+            <Label Grid.Row="1"
+                   Text="{Binding Patient.FullName}"
+                   FontSize="18"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,8"
+                   Style="{StaticResource TitleLabel}"/>
+
+            <VerticalStackLayout Grid.Row="2"
+                                 Spacing="20"
+                                 Padding="10">
+                <Border Style="{StaticResource CardBorder}" Margin="0">
+                    <Grid ColumnDefinitions="Auto,*"
+                          RowDefinitions="Auto, Auto, Auto, Auto"
+                          ColumnSpacing="10"
+                          RowSpacing="10">
+                        <Label Text="ID:" FontAttributes="Bold" />
+                        <Label Text="{Binding Patient.Id}" Grid.Column="1" />
+
+                        <Label Text="DOB:" Grid.Row="1" FontAttributes="Bold" />
+                        <Label Text="{Binding Patient.DOB, StringFormat='{0:MM/dd/yyyy}'}" Grid.Column="1" Grid.Row="1" />
+
+                        <Label Text="Phone:" Grid.Row="2" FontAttributes="Bold" />
+                        <Label Text="{Binding Patient.Phone}" Grid.Column="1" Grid.Row="2" />
+
+                        <Label Text="Email:" Grid.Row="3" FontAttributes="Bold" />
+                        <Label Text="{Binding Patient.Email}" Grid.Column="1" Grid.Row="3" />
+                    </Grid>
+                </Border>
+
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="{Binding Patient.CreatedAt, StringFormat='Created: {0:MMM dd, yyyy h:mm tt}'}"
+                           Style="{StaticResource SubtextLabel}" />
+                    <Label Text="{Binding Patient.LastModified, StringFormat='Created: {0:MMM dd, yyyy h:mm tt}'}"
+                           Style="{StaticResource SubtextLabel}" />
+                </VerticalStackLayout>
+
+                <Label Text="Patient Note" FontAttributes="Bold" FontSize="16" />
+                <Border Style="{StaticResource CardBorder}" Margin="0">
+                    <Label Text="{Binding Patient.Note}"
+                           FontSize="14"
+                           LineBreakMode="WordWrap"
+                           TextColor="Black" />
+                </Border>
+
+                <Label Text="Medical History" FontAttributes="Bold" FontSize="16" />
+                <Border Style="{StaticResource CardBorder}" Margin="0">
+                    <Label Text="{Binding Patient.MedHistory}"
+                           FontSize="14"
+                           LineBreakMode="WordWrap"
+                           TextColor="Black" />
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

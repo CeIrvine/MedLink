@@ -77,19 +77,23 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         <Button Text="Search By Fingerprint"
+                TextColor="#2a3f59"
                 Command="{Binding SearchByFingerprintCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="2"
                 Grid.Column="0"
                 HeightRequest="10"
-                Margin="8"/>
+                Margin="8"
+                BackgroundColor="#b6cee6"/>
 
         <Button Text="Search By FaceId"
+                TextColor="#2a3f59"
                 Command="{Binding SearchByFaceIdCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="2"
                 Grid.Column="1"
-                Margin="8"/>
+                Margin="8"
+                BackgroundColor="#b6cee6"/>
 
         <ActivityIndicator IsVisible="{Binding Isbusy}"
                            IsRunning="{Binding Isbusy}"
