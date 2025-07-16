@@ -5,11 +5,11 @@ namespace medLinkMaui.View
 {
     public partial class MainPage : ContentPage
     {
-        private PatientViewModel ViewModel => BindingContext as PatientViewModel;
+        private PatientsViewModel ViewModel => BindingContext as PatientsViewModel;
 
         double _lastScrollY = 0;
 
-        public MainPage(PatientViewModel viewModel)
+        public MainPage(PatientsViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;

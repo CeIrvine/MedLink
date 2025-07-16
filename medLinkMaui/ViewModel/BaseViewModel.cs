@@ -13,15 +13,11 @@ namespace medLinkMaui.ViewModel
     {
         public BaseViewModel()
         {
-
         }
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
-        bool isbusy;
-
-        [ObservableProperty]
-        string title;
+        bool isbusy;   
 
         public bool IsNotBusy => !Isbusy;       
     }

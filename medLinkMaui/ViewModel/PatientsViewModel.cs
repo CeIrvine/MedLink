@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MedLink.Logic.Models;
 using MedLink.Logic.Services;
+using medLinkMaui.View;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Dispatching;
 using System;
@@ -14,15 +15,14 @@ using System.Threading.Tasks;
 
 namespace medLinkMaui.ViewModel
 {
-    public partial class PatientViewModel : BaseViewModel
+    public partial class PatientsViewModel : BaseViewModel
     {
         PatientsService patientsService;
         public ObservableCollection<Patient> Patients { get; } = new();
         public ObservableCollection<Patient> FilteredPatients { get; } = new();
 
-        public PatientViewModel(PatientsService patientsService)
+        public PatientsViewModel(PatientsService patientsService)
         {
-            Title = "Patients";
             this.patientsService = patientsService;
         }
         
@@ -134,6 +134,19 @@ namespace medLinkMaui.ViewModel
             FilteredPatients.Clear();
             foreach (var p in filtered)
                 FilteredPatients.Add(p);
+        }
+
+        [RelayCommand]
+        async Task GoToDetailsAsync(Patient patient)
+        {
+            if (patient is null)
+                return;
+
+            await Shell.Current.GoToAsync($"{nameof(DetailsPage)}", true,
+                new Dictionary<string, object>
+                {
+                    {"Patient", patient}
+                });
         }
     }
 }
