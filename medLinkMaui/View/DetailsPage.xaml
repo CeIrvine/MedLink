@@ -12,6 +12,19 @@
                 VerticalOptions="Fill"
                 BackgroundColor="White"/>
 
+            <Border WidthRequest="40" 
+                    HeightRequest="40" 
+                    BackgroundColor="Transparent" 
+                    ZIndex="1" 
+                    Margin="10"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Stroke="Transparent">
+                <ImageButton Source="pen_to_square_regular.png"
+                             Command="{Binding ToggleEditCommand}" 
+                             Scale="0.7"/>
+            </Border>
+            
             <Border StrokeShape="RoundRectangle 80"
                     Stroke="LightGrey"
                     StrokeThickness="1"
@@ -21,39 +34,50 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center">
                 <Image Aspect="AspectFill"
-                       HeightRequest="170"
+                       HeightRequest="172"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Source="empty_profile.png"
-                       WidthRequest="170"/>
+                       WidthRequest="172" />
             </Border>
 
             <Label Grid.Row="1"
                    Text="{Binding Patient.FullName}"
-                   FontSize="18"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,8"
-                   Style="{StaticResource TitleLabel}"/>
+                   Style="{StaticResource TitleLabel}"
+                   IsVisible="{Binding IsReadOnly}"
+                   Margin="0"
+                   HeightRequest="50"
+                   Padding="0,9,0,5"/>
 
+            <Entry Text="{Binding FullNameEditable}" 
+                   IsVisible="{Binding IsEditing}" 
+                   Placeholder="Full Name"
+                   Grid.Row="1"
+                   Style="{StaticResource FormEntry}"
+                   HeightRequest="50"/>
+           
             <VerticalStackLayout Grid.Row="2"
                                  Spacing="20"
-                                 Padding="10">
-                <Border Style="{StaticResource CardBorder}" Margin="0">
+                                 Padding="10,0,10,0">
+                <Border Style="{StaticResource CardBorder}" Margin="0" >
                     <Grid ColumnDefinitions="Auto,*"
                           RowDefinitions="Auto, Auto, Auto, Auto"
                           ColumnSpacing="10"
-                          RowSpacing="10">
+                          RowSpacing="20">
                         <Label Text="ID:" FontAttributes="Bold" />
                         <Label Text="{Binding Patient.Id}" Grid.Column="1" />
 
                         <Label Text="DOB:" Grid.Row="1" FontAttributes="Bold" />
-                        <Label Text="{Binding Patient.DOB, StringFormat='{0:MM/dd/yyyy}'}" Grid.Column="1" Grid.Row="1" />
+                        <Label Text="{Binding Patient.DOB, StringFormat='{0:MM/dd/yyyy}'}" Grid.Column="1" Grid.Row="1" IsVisible="{Binding IsReadOnly}" />
+                        <DatePicker Style="{StaticResource FormDatePicker}" Date="{Binding EditablePatient.DOB}" Grid.Row="1" Grid.Column="1" IsVisible="{Binding IsEditing}" />
 
                         <Label Text="Phone:" Grid.Row="2" FontAttributes="Bold" />
-                        <Label Text="{Binding Patient.Phone}" Grid.Column="1" Grid.Row="2" />
+                        <Label Text="{Binding Patient.Phone}" Grid.Column="1" Grid.Row="2" IsVisible="{Binding IsReadOnly}" />
+                        <Entry Text="{Binding EditablePatient.Phone}" Grid.Column="1" Grid.Row="2" IsVisible="{Binding IsEditing}" Placeholder="Phone Number"/>
 
                         <Label Text="Email:" Grid.Row="3" FontAttributes="Bold" />
-                        <Label Text="{Binding Patient.Email}" Grid.Column="1" Grid.Row="3" />
+                        <Label Text="{Binding Patient.Email}" Grid.Column="1" Grid.Row="3" IsVisible="{Binding IsReadOnly}" />
+                        <Entry Text="{Binding EditablePatient.Email}" Grid.Column="1" Grid.Row="3" IsVisible="{Binding IsEditing}" Placeholder="Email Address"/>
                     </Grid>
                 </Border>
 
@@ -66,19 +90,52 @@
 
                 <Label Text="Patient Note" FontAttributes="Bold" FontSize="16" />
                 <Border Style="{StaticResource CardBorder}" Margin="0">
-                    <Label Text="{Binding Patient.Note}"
-                           FontSize="14"
-                           LineBreakMode="WordWrap"
-                           TextColor="Black" />
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Patient.Note}"
+                               FontSize="14"
+                               LineBreakMode="WordWrap"
+                               TextColor="Black" 
+                               IsVisible="{Binding IsReadOnly}" 
+                               Padding="2,5,2,5"/>
+                        <Editor Text="{Binding EditablePatient.Note}"
+                                AutoSize="TextChanges"
+                                IsVisible="{Binding IsEditing}" 
+                                Style="{StaticResource FormEditor}"/>
+                    </VerticalStackLayout>
                 </Border>
 
                 <Label Text="Medical History" FontAttributes="Bold" FontSize="16" />
                 <Border Style="{StaticResource CardBorder}" Margin="0">
-                    <Label Text="{Binding Patient.MedHistory}"
-                           FontSize="14"
-                           LineBreakMode="WordWrap"
-                           TextColor="Black" />
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Patient.MedHistory}"
+                               FontSize="14"
+                               LineBreakMode="WordWrap"
+                               TextColor="Black" 
+                               IsVisible="{Binding IsReadOnly}" />
+                        <Editor Text="{Binding EditablePatient.MedHistory}"
+                                AutoSize="TextChanges"
+                                IsVisible="{Binding IsEditing}" />
+                    </VerticalStackLayout>
                 </Border>
+
+                <Grid ColumnDefinitions="*,*">
+                    <Button Text="Cancel"
+                            Command="{Binding CancelCommand}"
+                            IsVisible="{Binding IsEditing}"
+                            BackgroundColor="#b6cee6"
+                            TextColor="#2a3f59"
+                            CornerRadius="8"
+                            Margin="10,20,10,0" 
+                            Grid.Column="0" />
+                    <Button Text="Save"
+                            Command="{Binding SaveCommand}"
+                            IsVisible="{Binding IsEditing}" 
+                            BackgroundColor="#b6cee6"
+                            TextColor="#2a3f59"
+                            CornerRadius="8"
+                            Margin="10,20,10,0" 
+                            Grid.Column="1" />
+                </Grid>
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

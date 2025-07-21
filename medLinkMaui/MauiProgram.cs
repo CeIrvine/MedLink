@@ -43,6 +43,13 @@ namespace medLinkMaui
             builder.Services.AddSingleton<DownloadedPage>();
             builder.Services.AddSingleton<DataManagementPage>();
 
+            // Trying to remove underline from Entry on Android
+            /*Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoUnderline", (handler, view) =>
+            {
+#if ANDROID
+#endif
+            });*/
+
 #if DEBUG
             builder.Logging.AddDebug();
             // HTTP Client
@@ -51,10 +58,13 @@ namespace medLinkMaui
                 ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
             })
             {
-                BaseAddress = new Uri("https://10.0.2.2:7000/api/")
+                BaseAddress = new Uri("https://10.0.2.2:7000/api/") // Android
+                /*BaseAddress = new Uri("https://localhost:7000/api/")*/ // Windows
             });
 #endif
             return builder.Build();
         }
     }
 }
+
+

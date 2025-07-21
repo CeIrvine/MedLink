@@ -116,8 +116,8 @@
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14" />
         <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
-        <Setter Property="MinimumHeightRequest" Value="44"/>
-        <Setter Property="MinimumWidthRequest" Value="44"/>
+        <Setter Property="MinimumHeightRequest" Value="0"/>
+        <Setter Property="MinimumWidthRequest" Value="0"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -377,8 +377,8 @@
         <Setter Property="BackgroundColor" Value="Transparent"/>
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="MinimumHeightRequest" Value="44"/>
-        <Setter Property="MinimumWidthRequest" Value="44"/>
+        <Setter Property="MinimumHeightRequest" Value="0"/>
+        <Setter Property="MinimumWidthRequest" Value="0"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -448,4 +448,118 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <!-- ===== Added Styles ===== -->
+    <!-- ===== Label Styles ===== -->
+    <Style x:Key="TitleLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Margin" Value="0,0,0,8" />
+    </Style>
+
+    <Style x:Key="SectionLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="Margin" Value="0,10,0,2" />
+    </Style>
+
+    <Style x:Key="DataLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+    </Style>
+
+    <Style x:Key="SubtextLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="Gray" />
+    </Style>
+
+    <Style x:Key="FieldTitleLabel" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <!-- ===== Border Styles ===== -->
+
+    <Style x:Key="ProfileImageBorder" TargetType="Border">
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="80" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Stroke" Value="LightGray" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="HeightRequest" Value="172" />
+        <Setter Property="WidthRequest" Value="172" />
+        <Setter Property="Margin" Value="0,25,0,0" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!-- ===== Card Border Styles ===== -->
+    <Style x:Key="CardBorder" TargetType="Border">
+        <Setter Property="Stroke" Value="LightGray" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="10" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===== Button Styles ===== -->
+
+    <Style x:Key="PrimaryButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#b6cee6" />
+        <Setter Property="TextColor" Value="#2a3f59" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Margin" Value="10,20,10,0" />
+    </Style>
+
+    <!-- ===== ImageButton Style ===== -->
+
+    <Style x:Key="IconButton" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="Scale" Value="0.7" />
+    </Style>
+
+    <!-- ===== Entry Style ===== -->
+    <Style x:Key="FormEntry" TargetType="Entry">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="PlaceholderColor" Value="Gray" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!-- ===== Editor Style ===== -->
+    <Style x:Key="FormEditor" TargetType="Editor">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="PlaceholderColor" Value="Gray" />
+        <Setter Property="AutoSize" Value="TextChanges" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="HeightRequest" Value="20" />
+        <Setter Property="VerticalOptions" Value="Start" />
+    </Style>
+
+    <!-- ===== DatePicker Style ===== -->
+    <Style x:Key="FormDatePicker" TargetType="DatePicker">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="HeightRequest" Value="20" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
 </ResourceDictionary>
