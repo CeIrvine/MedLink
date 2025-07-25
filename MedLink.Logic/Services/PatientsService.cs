@@ -9,7 +9,7 @@ using MedLink.Logic.Models;
 
 namespace MedLink.Logic.Services
 {
-    public class PatientsService : BaseService<Patient>
+    public class PatientsService : BaseService
     {
         public PatientsService(HttpClient httpClient)
             : base(httpClient, "patients")

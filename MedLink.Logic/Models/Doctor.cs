@@ -48,6 +48,7 @@ namespace MedLink.Logic.Models
         [MaxLength(30)]
         public string Email { get; set; }
 
-        public string FullName => $"{FirstName} {LastName}";
+        [Column("full_name")]
+        public string FullName { get; set; }
     }
 }

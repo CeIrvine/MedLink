@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedLink.Logic.Services
 {
-    public class DoctorsService : BaseService<Doctor>
+    public class DoctorsService : BaseService
     {
         public DoctorsService(HttpClient httpClient)
             :base(httpClient, "doctors")

@@ -1,12 +1,159 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MedLinkMaui.Converters"
              x:Class="medLinkMaui.View.CreatePatientPage"
-             Title="CreatePatientPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Patient"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="{Binding ValidationErrors[FirstName]}" 
+                           TextColor="Red" FontSize="12"
+                           IsVisible="{Binding ValidationErrors[FirstName], Converter={StaticResource NullToBoolConverter}}" />
+                    <Label Text="First Name" />
+                    <Entry Text="{Binding PostPatient.FirstName}" Placeholder="Enter first name" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="{Binding ValidationErrors[LastName]}" 
+                           TextColor="Red" FontSize="12"
+                           IsVisible="{Binding ValidationErrors[LastName], Converter={StaticResource NullToBoolConverter}}" />
+                    <Label Text="Last Name" />
+                    <Entry Text="{Binding PostPatient.LastName}" Placeholder="Enter last name" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout>
+                <Label Text="{Binding ValidationErrors[DOB]}" 
+                       TextColor="Red" FontSize="12"
+                       IsVisible="{Binding ValidationErrors[DOB], Converter={StaticResource NullToBoolConverter}}" />
+                <Label Text="Date of Birth" />
+                <DatePicker Date="{Binding SelectedDate, Mode=TwoWay}" Format="{Binding DateFormat}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="{Binding ValidationErrors[Phone]}" 
+                       TextColor="Red" FontSize="12"
+                       IsVisible="{Binding ValidationErrors[Phone], Converter={StaticResource NullToBoolConverter}}" />
+                <Label Text="Phone Number" />
+                <Entry Text="{Binding PostPatient.Phone}" Placeholder="123-456-7890" Keyboard="Telephone" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="{Binding ValidationErrors[Email]}" 
+                       TextColor="Red" FontSize="12"
+                       IsVisible="{Binding ValidationErrors[Email], Converter={StaticResource NullToBoolConverter}}" />
+                <Label Text="Email (Optional)" />
+                <Entry Text="{Binding PostPatient.Email}" Placeholder="example@email.com" Keyboard="Email" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="{Binding ValidationErrors[Insurance]}" 
+                       TextColor="Red" FontSize="12"
+                       IsVisible="{Binding ValidationErrors[Insurance], Converter={StaticResource NullToBoolConverter}}" />
+                <Label Text="Insurance" />
+                <Entry Text="{Binding PostInsurance.InsuranceNum}" Placeholder="#92958949" />
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="{Binding ValidationErrors[Height]}" 
+                           TextColor="Red" FontSize="12"
+                           IsVisible="{Binding ValidationErrors[Height], Converter={StaticResource NullToBoolConverter}}" />
+                    <Label Text="Height (cm)" />
+                    <Entry Text="{Binding PostBiometric.Height}" Placeholder="180" Keyboard="Numeric" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="{Binding ValidationErrors[Weight]}" 
+                           TextColor="Red" FontSize="12"
+                           IsVisible="{Binding ValidationErrors[Weight], Converter={StaticResource NullToBoolConverter}}" />
+                    <Label Text="Weight (kg)" />
+                    <Entry Text="{Binding PostBiometric.Weight}" Placeholder="75" Keyboard="Numeric" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="{Binding ValidationErrors[BloodType]}" 
+                           TextColor="Red" FontSize="12"
+                           IsVisible="{Binding ValidationErrors[BloodType], Converter={StaticResource NullToBoolConverter}}" />
+                    <Label Text="Blood Type" />
+                    <Picker SelectedItem="{Binding PostBiometric.BloodType}" Title="Select blood type">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>A+</x:String>
+                                <x:String>A-</x:String>
+                                <x:String>B+</x:String>
+                                <x:String>B-</x:String>
+                                <x:String>AB+</x:String>
+                                <x:String>AB-</x:String>
+                                <x:String>O+</x:String>
+                                <x:String>O-</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="{Binding ValidationErrors[Gender]}" 
+                           TextColor="Red" FontSize="12"
+                           IsVisible="{Binding ValidationErrors[Gender], Converter={StaticResource NullToBoolConverter}}" />
+                    <Label Text="Gender" />
+                    <Picker SelectedItem="{Binding PostBiometric.Gender}" Title="Select gender">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout>
+                <Label Text="{Binding ValidationErrors[Fingerprint]}" 
+                       TextColor="Red" FontSize="12"
+                       IsVisible="{Binding ValidationErrors[Fingerprint], Converter={StaticResource NullToBoolConverter}}" />
+                <Button Text="Scan Fingerprint"
+                        BackgroundColor="#b6cee6"
+                        TextColor="#2a3f59"
+                        CornerRadius="8"
+                        Command="{Binding ScanFingerprintCommand}"
+                        Margin="0,12,0,12"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Patient Note (Optional)" />
+                <Editor Text="{Binding PostPatient.Note}" Placeholder="Enter note..." AutoSize="TextChanges" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Medical History (Optional)" />
+                <Editor Text="{Binding PostPatient.MedHistory}" Placeholder="Enter history..." AutoSize="TextChanges" />
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button Text="Cancel"
+                        Command="{Binding CancelCommand}"
+                        BackgroundColor="#b6cee6"
+                        TextColor="#2a3f59"
+                        CornerRadius="8" />
+
+                <Button Text="Save"
+                        Command="{Binding SavePatientCommand}"
+                        BackgroundColor="#b6cee6"
+                        TextColor="#2a3f59"
+                        CornerRadius="8" 
+                        Grid.Column="1"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

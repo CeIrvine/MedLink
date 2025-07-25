@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedLink.Logic.Services
 {
-    public class BaseService<T>
+    public class BaseService
     {
         protected readonly HttpClient _httpClient;
         private readonly string _endpoint;
@@ -23,7 +23,7 @@ namespace MedLink.Logic.Services
             _endpoint = endpoint ?? throw new ArgumentNullException(nameof(endpoint));
         }
 
-        public async Task<List<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync<T>()
         {
             var response = await _httpClient.GetAsync(_endpoint);
             if (response.IsSuccessStatusCode)
@@ -33,7 +33,7 @@ namespace MedLink.Logic.Services
             return new List<T>();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync<T>(int id)
         {
             var response = await _httpClient.GetAsync($"{_endpoint}/{id}");
             if (response.IsSuccessStatusCode)
@@ -43,15 +43,28 @@ namespace MedLink.Logic.Services
             return default;
         }
 
-        public async Task<bool> AddAsync(T item)
+        public async Task<bool> AddAsync<T>(T item)
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize(item);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync(_endpoint, content);           
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<TResponse?> PostAndReceiveAsync<TRequest, TResponse>(TRequest item)
         {
             var json = System.Text.Json.JsonSerializer.Serialize(item);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(_endpoint, content);
-            return response.IsSuccessStatusCode;
+
+            if (!response.IsSuccessStatusCode)
+                return default;
+            
+            var responseContent = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<TResponse>(responseContent, _jsonOptions);
         }
 
-        public async Task<bool> UpdateAsync(int id, T item)
+        public async Task<bool> UpdateAsync<T>(int id, T item)
         {
             var json = System.Text.Json.JsonSerializer.Serialize(item);
             var content = new StringContent(json, Encoding.UTF8, "application/json");

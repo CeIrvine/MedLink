@@ -7,6 +7,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MedLink.Logic.Models;
 using MedLink.Logic.Services;
+using MedLink.Logic.DTOs.Push;
+using MedLink.Logic.DTOs.Get;
 
 namespace medLinkMaui.ViewModel
 {
@@ -19,16 +21,16 @@ namespace medLinkMaui.ViewModel
             this.patientsService = patientsService;
         }
 
-        partial void OnPatientChanged(Patient value)
+        partial void OnPatientChanged(GetPatientDto value)
         {
             EditablePatient = Clone(value);
         }
 
         [ObservableProperty]
-        Patient patient;
+        GetPatientDto patient;
 
         [ObservableProperty]
-        Patient editablePatient;
+        PutPatientDto editablePatient;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsReadOnly))]
@@ -76,7 +78,7 @@ namespace medLinkMaui.ViewModel
                 return;  
             try
             {
-                if(!string.IsNullOrWhiteSpace(fullNameEditable))
+                if(!string.IsNullOrWhiteSpace(FullNameEditable))
                 {
                     var parts = FullNameEditable.Trim().Split(' ', 2);
                     EditablePatient.FirstName = parts[0];
@@ -84,10 +86,11 @@ namespace medLinkMaui.ViewModel
                 }
                 Isbusy = true;
                 await patientsService.UpdateAsync(Patient.Id, EditablePatient);
-                
-                Patient = Clone(EditablePatient);
+
+                Patient = await patientsService.GetByIdAsync<GetPatientDto>(Patient.Id);
                 IsEditing = false;
                 OnPropertyChanged(nameof(IsReadOnly));
+                OnPropertyChanged(nameof(Patient));
             }
             catch (Exception ex)
             {
@@ -99,17 +102,14 @@ namespace medLinkMaui.ViewModel
             }
         }
 
-        Patient Clone(Patient p)
+        PutPatientDto Clone(GetPatientDto p)
         {
-            return new Patient
+            return new PutPatientDto
             {
                 DOB = p.DOB,
                 Email = p.Email,
                 Phone = p.Phone,
                 MedHistory = p.MedHistory,
-                Id = p.Id,
-                CreatedAt = p.CreatedAt,
-                LastModified = p.LastModified,
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 Note = p.Note

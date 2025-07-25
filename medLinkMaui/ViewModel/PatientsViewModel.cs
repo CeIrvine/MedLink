@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MedLink.Logic.DTOs.Get;
 using MedLink.Logic.Models;
 using MedLink.Logic.Services;
 using medLinkMaui.View;
@@ -18,14 +19,16 @@ namespace medLinkMaui.ViewModel
     public partial class PatientsViewModel : BaseViewModel
     {
         PatientsService patientsService;
-        public ObservableCollection<Patient> Patients { get; } = new();
-        public ObservableCollection<Patient> FilteredPatients { get; } = new();
+        public ObservableCollection<GetPatientDto> Patients { get; } = new();
+        public ObservableCollection<GetPatientDto> FilteredPatients { get; } = new();
 
         public PatientsViewModel(PatientsService patientsService)
         {
             this.patientsService = patientsService;
         }
-        
+
+        public string FullName { get; set; }
+
         private string searchKeyword;
         public string SearchKeyword
         {
@@ -48,13 +51,13 @@ namespace medLinkMaui.ViewModel
             try
             {
                 Isbusy = true;
-                var patients = await patientsService.GetAllAsync();
+                var patients = await patientsService.GetAllAsync<GetPatientDto>();
 
                 if (Patients.Count != 0)
                     Patients.Clear();
 
                 foreach (var patient in patients)
-                    Patients.Add(patient);
+                    Patients.Add(patient);               
                 
                 FilteredPatients.Clear();
                 foreach (var patient in Patients)               
@@ -111,7 +114,7 @@ namespace medLinkMaui.ViewModel
                 return;
             }
 
-            IEnumerable<Patient> filtered;
+            IEnumerable<GetPatientDto> filtered;
 
             if (char.IsDigit(keyword[0]))
             {
@@ -121,7 +124,7 @@ namespace medLinkMaui.ViewModel
                 }
                 else
                 {
-                    filtered = Enumerable.Empty<Patient>();
+                    filtered = Enumerable.Empty<GetPatientDto>();
                 }                
             }
             else
@@ -137,7 +140,7 @@ namespace medLinkMaui.ViewModel
         }
 
         [RelayCommand]
-        async Task GoToDetailsAsync(Patient patient)
+        async Task GoToDetailsAsync(GetPatientDto patient)
         {
             if (patient is null)
                 return;

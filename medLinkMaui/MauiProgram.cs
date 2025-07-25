@@ -34,7 +34,8 @@ namespace medLinkMaui
 
             // view models
             builder.Services.AddSingleton<PatientsViewModel>();
-            builder.Services.AddTransient<PatientDetailsViewModel>();   
+            builder.Services.AddTransient<PatientDetailsViewModel>();
+            builder.Services.AddTransient<CreatePatientViewModel>();
 
             // pages/views
             builder.Services.AddSingleton<MainPage>();

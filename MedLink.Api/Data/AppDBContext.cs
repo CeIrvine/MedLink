@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MedLink.Logic.Models;
 using MedLink.Logic.Interfaces;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MedLink.Api.Data
 {
@@ -40,5 +41,15 @@ namespace MedLink.Api.Data
                 entity.LastModified = DateTime.UtcNow;
             }
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.Entity<Patient>()
+                .Property(p => p.FullName)
+                .HasComputedColumnSql("[first_name] + ' ' + [last_name]")
+                .ValueGeneratedOnAddOrUpdate()
+                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+        }       
     }
 }

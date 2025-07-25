@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MedLink.Api.DTOs.Get;
-using MedLink.Api.DTOs.Post;
-using MedLink.Api.DTOs.Push;
 using MedLink.Logic.Models;
+using MedLink.Logic.DTOs.Get;
+using MedLink.Logic.DTOs.Post;
+using MedLink.Logic.DTOs.Push;
 
 namespace MedLink.Api.Mapping
 {
