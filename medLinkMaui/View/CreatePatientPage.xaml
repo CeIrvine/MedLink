@@ -14,67 +14,67 @@
         <VerticalStackLayout Padding="20" Spacing="16">
             <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
                 <VerticalStackLayout>
-                    <Label Text="{Binding ValidationErrors[FirstName]}" 
+                    <Label Text="{Binding Errors[FirstName]}" 
                            TextColor="Red" FontSize="12"
-                           IsVisible="{Binding ValidationErrors[FirstName], Converter={StaticResource NullToBoolConverter}}" />
+                           IsVisible="{Binding Errors[FirstName], Converter={StaticResource NullToBoolConverter}}" />
                     <Label Text="First Name" />
                     <Entry Text="{Binding PostPatient.FirstName}" Placeholder="Enter first name" />
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Column="1">
-                    <Label Text="{Binding ValidationErrors[LastName]}" 
+                    <Label Text="{Binding Errors[LastName]}" 
                            TextColor="Red" FontSize="12"
-                           IsVisible="{Binding ValidationErrors[LastName], Converter={StaticResource NullToBoolConverter}}" />
+                           IsVisible="{Binding Errors[LastName], Converter={StaticResource NullToBoolConverter}}" />
                     <Label Text="Last Name" />
                     <Entry Text="{Binding PostPatient.LastName}" Placeholder="Enter last name" />
                 </VerticalStackLayout>
             </Grid>
 
             <VerticalStackLayout>
-                <Label Text="{Binding ValidationErrors[DOB]}" 
+                <Label Text="{Binding Errors[DOB]}" 
                        TextColor="Red" FontSize="12"
-                       IsVisible="{Binding ValidationErrors[DOB], Converter={StaticResource NullToBoolConverter}}" />
+                       IsVisible="{Binding Errors[DOB], Converter={StaticResource NullToBoolConverter}}" />
                 <Label Text="Date of Birth" />
                 <DatePicker Date="{Binding SelectedDate, Mode=TwoWay}" Format="{Binding DateFormat}" />
             </VerticalStackLayout>
 
             <VerticalStackLayout>
-                <Label Text="{Binding ValidationErrors[Phone]}" 
+                <Label Text="{Binding Errors[Phone]}" 
                        TextColor="Red" FontSize="12"
-                       IsVisible="{Binding ValidationErrors[Phone], Converter={StaticResource NullToBoolConverter}}" />
+                       IsVisible="{Binding Errors[Phone], Converter={StaticResource NullToBoolConverter}}" />
                 <Label Text="Phone Number" />
                 <Entry Text="{Binding PostPatient.Phone}" Placeholder="123-456-7890" Keyboard="Telephone" />
             </VerticalStackLayout>
 
             <VerticalStackLayout>
-                <Label Text="{Binding ValidationErrors[Email]}" 
+                <Label Text="{Binding Errors[Email]}" 
                        TextColor="Red" FontSize="12"
-                       IsVisible="{Binding ValidationErrors[Email], Converter={StaticResource NullToBoolConverter}}" />
+                       IsVisible="{Binding Errors[Email], Converter={StaticResource NullToBoolConverter}}" />
                 <Label Text="Email (Optional)" />
                 <Entry Text="{Binding PostPatient.Email}" Placeholder="example@email.com" Keyboard="Email" />
             </VerticalStackLayout>
 
             <VerticalStackLayout>
-                <Label Text="{Binding ValidationErrors[Insurance]}" 
+                <Label Text="{Binding Errors[InsuranceNum]}" 
                        TextColor="Red" FontSize="12"
-                       IsVisible="{Binding ValidationErrors[Insurance], Converter={StaticResource NullToBoolConverter}}" />
+                       IsVisible="{Binding Errors[InsuranceNum], Converter={StaticResource NullToBoolConverter}}" />
                 <Label Text="Insurance" />
                 <Entry Text="{Binding PostInsurance.InsuranceNum}" Placeholder="#92958949" />
             </VerticalStackLayout>
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
                 <VerticalStackLayout>
-                    <Label Text="{Binding ValidationErrors[Height]}" 
+                    <Label Text="{Binding Errors[Height]}" 
                            TextColor="Red" FontSize="12"
-                           IsVisible="{Binding ValidationErrors[Height], Converter={StaticResource NullToBoolConverter}}" />
+                           IsVisible="{Binding Errors[Height], Converter={StaticResource NullToBoolConverter}}" />
                     <Label Text="Height (cm)" />
                     <Entry Text="{Binding PostBiometric.Height}" Placeholder="180" Keyboard="Numeric" />
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Column="1">
-                    <Label Text="{Binding ValidationErrors[Weight]}" 
+                    <Label Text="{Binding Errors[Weight]}" 
                            TextColor="Red" FontSize="12"
-                           IsVisible="{Binding ValidationErrors[Weight], Converter={StaticResource NullToBoolConverter}}" />
+                           IsVisible="{Binding Errors[Weight], Converter={StaticResource NullToBoolConverter}}" />
                     <Label Text="Weight (kg)" />
                     <Entry Text="{Binding PostBiometric.Weight}" Placeholder="75" Keyboard="Numeric" />
                 </VerticalStackLayout>
@@ -82,9 +82,9 @@
 
             <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
                 <VerticalStackLayout>
-                    <Label Text="{Binding ValidationErrors[BloodType]}" 
+                    <Label Text="{Binding Errors[BloodType]}" 
                            TextColor="Red" FontSize="12"
-                           IsVisible="{Binding ValidationErrors[BloodType], Converter={StaticResource NullToBoolConverter}}" />
+                           IsVisible="{Binding Errors[BloodType], Converter={StaticResource NullToBoolConverter}}" />
                     <Label Text="Blood Type" />
                     <Picker SelectedItem="{Binding PostBiometric.BloodType}" Title="Select blood type">
                         <Picker.ItemsSource>
@@ -103,9 +103,9 @@
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Column="1">
-                    <Label Text="{Binding ValidationErrors[Gender]}" 
+                    <Label Text="{Binding Errors[Gender]}" 
                            TextColor="Red" FontSize="12"
-                           IsVisible="{Binding ValidationErrors[Gender], Converter={StaticResource NullToBoolConverter}}" />
+                           IsVisible="{Binding Errors[Gender], Converter={StaticResource NullToBoolConverter}}" />
                     <Label Text="Gender" />
                     <Picker SelectedItem="{Binding PostBiometric.Gender}" Title="Select gender">
                         <Picker.ItemsSource>
@@ -119,9 +119,6 @@
             </Grid>
 
             <VerticalStackLayout>
-                <Label Text="{Binding ValidationErrors[Fingerprint]}" 
-                       TextColor="Red" FontSize="12"
-                       IsVisible="{Binding ValidationErrors[Fingerprint], Converter={StaticResource NullToBoolConverter}}" />
                 <Button Text="Scan Fingerprint"
                         BackgroundColor="#b6cee6"
                         TextColor="#2a3f59"

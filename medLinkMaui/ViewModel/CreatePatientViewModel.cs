@@ -104,49 +104,49 @@ namespace medLinkMaui.ViewModel
 
             if (string.IsNullOrWhiteSpace(PostPatient.FirstName))
             {
-                Errors["FirstName"] = "First name is required.";
+                Errors["FirstName"] = "First name is required";
                 IsValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(PostPatient.LastName))
             {
-                Errors["LastName"] = "Last name is required.";
+                Errors["LastName"] = "Last name is required";
                 IsValid = false;
             }
 
             if (PostPatient.DOB >= DateTime.Today)
             {
-                Errors["DOB"] = "Date of birth must be in the past.";
+                Errors["DOB"] = "Date of birth must be in the past";
                 IsValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(PostPatient.Phone))
             {
-                Errors["Phone"] = "Phone number is required.";
+                Errors["Phone"] = "Phone number is required";
                 IsValid = false;
             }                       
 
             if (string.IsNullOrWhiteSpace(PostBiometric.BloodType))
             {
-                Errors["BloodType"] = "Please select a blood type.";
+                Errors["BloodType"] = "Please select a blood type";
                 IsValid = false;
             }
 
             if (!Regex.IsMatch(PostBiometric.Height.ToString() ?? "", @"^\d+$"))
             {
-                Errors["Height"] = "Height must be a number.";
+                Errors["Height"] = "Height must be a number";
                 IsValid = false;
             }
 
             if (!Regex.IsMatch(PostBiometric.Weight.ToString() ?? "", @"^\d+$"))
             {
-                Errors["Weight"] = "Weight must be a number.";
+                Errors["Weight"] = "Weight must be a number";
                 IsValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(PostBiometric.Gender))
             {
-                Errors["Gender"] = "Please select a gender.";
+                Errors["Gender"] = "Please select a gender";
                 IsValid = false;
             }
 
